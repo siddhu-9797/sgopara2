@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Enter Email</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Login - Elon Rusk's Invitation to take humans to Mars</h2>
+        <p class="text-center">Elon Rusk has already given his invitation to the admin (admin@journeytomars.com). But it's not easy to steal the invitation from him.</p>
+        
+        <!-- Flash messages for user feedback -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-warning mt-3">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <!-- Email form -->
+        <form method="POST" action="{{ url_for('login_email') }}">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+        
+        <!-- Optional back link if needed -->
+        <div class="text-center mt-3">
+            <a href="{{ url_for('start_over') }}">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

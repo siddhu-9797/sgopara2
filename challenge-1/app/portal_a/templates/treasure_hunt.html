@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure Hunt</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center">Your invitation to planet Mars is just a step away</h2>
+    <p class="text-center">Choose the right box to get a ticket to Mars!</p>
+    <p class="text-center">Remember, you only have once chance to select.</p>
+    <div class="row justify-content-center">
+        <form method="POST" class="d-inline">
+            <div class="container">
+                <div class="d-flex flex-wrap justify-content-center">
+                    {% for i in range(10) %}
+                        <button type="submit" name="token" value="{{ tokens[i] }}" class="button-box m-2">
+                            <img src="{{ url_for('static', filename='images/box.webp') }}" alt="Box {{ i + 1 }}">
+                            <span>{{ i + 1 }}</span>
+                        </button>
+                    {% endfor %}
+                </div>
+            </div>
+        </form>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alert alert-info mt-3">
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+</div>
+</body>
+</html>

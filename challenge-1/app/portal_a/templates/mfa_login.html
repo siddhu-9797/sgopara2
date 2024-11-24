@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - MFA</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Admin Login - Multi-Factor Authentication (MFA)</h2>
+        <p class="text-center">Good Job. But I told you already. It is not easy to steal the invitation from the admin. Alright, you have to know something. Only admin has to enter MFA password to login.</p>
+        
+        <!-- Flash messages for user feedback -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-danger mt-3">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <!-- MFA Password form -->
+        <form method="POST" action="{{ url_for('mfa_login') }}">
+            <div class="form-group">
+                <label for="mfa_password">MFA Password</label>
+                <input type="password" class="form-control" id="mfa_password" name="mfa_password" placeholder="Enter MFA password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+        
+        <!-- Link to log out if they need to restart the process -->
+        <div class="text-center mt-3">
+            <a href="{{ url_for('logout') }}">Log out and start over</a>
+        </div>
+    </div>
+</body>
+</html>
+    

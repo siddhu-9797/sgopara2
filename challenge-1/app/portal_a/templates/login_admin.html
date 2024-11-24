@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center">Admin Login</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label for="mfa_password">Enter MFA Password</label>
+            <input type="password" id="mfa_password" name="mfa_password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-success btn-block">Login as Admin</button>
+    </form>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alert alert-warning mt-3">
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+</div>
+</body>
+</html>
