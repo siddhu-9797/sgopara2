@@ -23,20 +23,21 @@ To solve this challenge, follow these steps:
      nc localhost 1337
      ```
     - Alternatively, run the binary locally by downloading from the portal
-   - Use `objdump`, `readelf`, or `gdb` to locate the address of the `win()` 
+   - Use `objdump`, `readelf`, or `gdb` to locate the address of the `castle()` 
      function:
      ```bash
-     objdump -d vuln | grep win
+     objdump -d vuln | grep castle
      ```
 
 2. **Understand the Vulnerability**:
    - The program has a buffer of size 64 bytes, followed by two canaries.
    - Canary 1 is leaked in the output. Canary 2 is hidden.
-   - The goal is to construct a payload to overflow the buffer, replace the canary values
-     with their respective values, add 10 extra bytes padding to reach the return address
-     and overwrite the return address to call `win()`.
-   - Here, the canary value should be identified byte-by-byte by bruteforcing every possible
-     value from 0x00 to 0xff 
+   - The goal is to construct a payload to overflow the buffer, replace the 
+     canary values
+     with their respective values, add 10 extra bytes padding to reach the 
+     return address and overwrite the return address to call `castle()`.
+   - Here, the canary value should be identified byte-by-byte by 
+     bruteforcing every possible value from 0x00 to 0xff 
 
 3. **Exploit Construction**:
    - Connect to the program using `nc`:
@@ -49,25 +50,21 @@ To solve this challenge, follow these steps:
      - Add `Canary 1` (4 bytes).
      - Add `Canary 2` (6 bytes).
      - Add 10 bytes of padding to align the stack.
-     - Overwrite the return address with the `win()` function's address.
+     - Overwrite the return address with the `castle()` function's address.
 
 4. **Payload Execution**:
    - Send the payload length as the first input.
    - Send the payload as the second input.
 
 5. **Retrieve the Flag**:
-   - Once the `win()` function is executed, the program will print the flag.
+   - Once the `castle()` function is executed, the program will print the flag.
 
 
 Steps to run the container,
 
 Build the container:
-docker build -t sgopara2 .
-docker run -p 5002:5002 -p 5003:5003 sgopara2
-
-After building and running the docker container, they can be access via:
-portal_a => http://127.0.0.1:5002
-portal_b => http://127.0.0.1:5003
+docker buildx build --platform linux/amd64  -t sgopara2 .
+docker run -d --platform linux/amd64 -p 1337:1337 --name sgopara2-container sgopara2
 
 
 ## Directory Structure
