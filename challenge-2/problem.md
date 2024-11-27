@@ -10,11 +10,12 @@
 
 ## Description
 
-Two soldiers are guarding a function to prevent any unauthorized overflows. Can you deceive both of them to "win" the challenge?
+Two soldiers are guarding to prevent any unauthorized overflows into a castle 
+and capture the king. Can you deceive both of them and capture the king?
 
 ## Details
 
-* ncat localhost 1337
+* nc localhost 1337
 
 
 ## Attributes

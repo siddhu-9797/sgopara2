@@ -1,8 +1,8 @@
 # Problem Dev 2
 
-This problem includes a vulnerable binary. The objective is to bypass identify 
-and bypass 2 stack canaries (referred  as soldiers), overflow the buffer and 
-redirect the execution to `win()` function to retrieve the flag.
+This problem includes a vulnerable binary. The objective is to bypass 2 stack 
+canaries (referred  as soldiers), overflow the buffer and 
+redirect the execution to `castle()` function to retrieve the flag.
 
 1st canary value is provided to the user at run time but the 2nd canary value 
 is hidden from the user.
@@ -20,7 +20,7 @@ To solve this challenge, follow these steps:
 1. **Analyze the Binary**:
     - ncat and run the binary:
      ```bash
-     ncat localhost 1337
+     nc localhost 1337
      ```
     - Alternatively, run the binary locally by downloading from the portal
    - Use `objdump`, `readelf`, or `gdb` to locate the address of the `win()` 
