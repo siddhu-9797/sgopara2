@@ -10,7 +10,7 @@
 
 ## Description
 
-See if you can use the two portals to break something.
+ Elon Rusk has made a plan to take humans to mars. Use the two portals to find the flag that is present in a treasure box on Mars.
 
 ## Details
 
